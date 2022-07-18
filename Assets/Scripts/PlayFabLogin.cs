@@ -10,6 +10,8 @@ public class PlayFabLogin : MonoBehaviour
 {
     [SerializeField] private Button _connectPlayFab;
     [SerializeField] private TMP_Text _textField;
+
+    private const string AuthGuidKey = "auth_guid";
     private void Start()
     {
         _connectPlayFab.onClick.AddListener(Connect);
@@ -20,12 +22,20 @@ public class PlayFabLogin : MonoBehaviour
         if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
             PlayFabSettings.staticSettings.TitleId = "767B9";
 
+        var needCreation = PlayerPrefs.HasKey(AuthGuidKey);
+        var id = PlayerPrefs.GetString(AuthGuidKey, Guid.NewGuid().ToString());
+
         var request = new LoginWithCustomIDRequest
         {
-            CustomId = "Player2",
-            CreateAccount = true,
+            CustomId = id,
+            CreateAccount = !needCreation
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSucces, OnLoginError);
+        PlayFabClientAPI.LoginWithCustomID(request, 
+            succes =>
+            {
+                PlayerPrefs.SetString(AuthGuidKey, id);
+                OnLoginSucces(succes);
+            }, OnLoginError);
     }
 
     private void OnLoginError(PlayFabError obj)
