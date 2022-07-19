@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
@@ -12,6 +8,7 @@ public class SignInWindow : AccountDataWindowsBase
 {
     [SerializeField] private Button _signInBtn;
     [SerializeField] private RectTransform _progressBar;
+    [SerializeField] private Canvas _canvas;
 
     private float _millesecound;
     private bool _isPressLogin;
@@ -24,7 +21,7 @@ public class SignInWindow : AccountDataWindowsBase
 
     private void SignIn()
     {
-        GetComponent<Canvas>().enabled = false;
+        _canvas.enabled = false;
         _isPressLogin = true;
         
         PlayFabClientAPI.LoginWithPlayFab(new LoginWithPlayFabRequest
@@ -47,6 +44,5 @@ public class SignInWindow : AccountDataWindowsBase
             var time = Time.deltaTime * 500f;
             _progressBar.Rotate(Vector3.back * time);
         }
-        Debug.Log(123);
     }
 }

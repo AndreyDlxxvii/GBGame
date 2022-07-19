@@ -1,21 +1,39 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class PlayFabAccountManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _titleLabel;
     [SerializeField] private Button _clearPlayerPrefs;
+    [SerializeField] private RectTransform _scrollViewCatalog;
+    [SerializeField] private TMP_Text _fieldForCataloItem;
     private void Start()
     {
         PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), OnGetAccount, OnError);
+        PlayFabClientAPI.GetCatalogItems(new GetCatalogItemsRequest(), OnGetCatalog, OnError);
         _clearPlayerPrefs.onClick.AddListener(ClearSaves);
+    }
+
+    private void OnGetCatalog(GetCatalogItemsResult result)
+    {
+        ShowCatalog(result.Catalog);
+        Debug.Log("GetCatalog complete!");
+    }
+
+    private void ShowCatalog(List<CatalogItem> items)
+    {
+        foreach (var item in items)
+        {
+            var t = Instantiate(_fieldForCataloItem, _scrollViewCatalog);
+            t.text = $"ItemID: {item.ItemId}";
+            
+        }
     }
 
     private void OnError(PlayFabError playFabError)

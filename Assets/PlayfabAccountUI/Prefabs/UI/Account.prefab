@@ -2238,7 +2238,8 @@ MonoBehaviour:
   _usernameInputField: {fileID: 8090938157099334032}
   _passwordInputField: {fileID: 4612925931844614158}
   _signInBtn: {fileID: 5517128453948474251}
-  _progressBar: {fileID: 4215243361905432745}
+  _progressBar: {fileID: 0}
+  _canvas: {fileID: 0}
 --- !u!1 &7263193347083943583
 GameObject:
   m_ObjectHideFlags: 0
