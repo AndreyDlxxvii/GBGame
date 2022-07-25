@@ -1,5 +1,3 @@
-using System;
-using System.Threading;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -37,9 +35,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log($"OnJoinLobby: {PhotonNetwork.InLobby}");
-        PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions {MaxPlayers = 2, IsVisible = true}, TypedLobby.Default);
+        //PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions {MaxPlayers = 2, IsVisible = true}, TypedLobby.Default);
     }
-
+    
     public override void OnJoinedRoom()
     {
         Debug.Log($"OnJoinRoom: {PhotonNetwork.InRoom}");

@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Playfab.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 1f8d20422db14ea4b8914c8f8382a5f5
+    path: Assets/Scenes/Photon.unity
+    guid: 4c16832f14e457a409dd9f376dc6b03c
   m_configObjects: {}
