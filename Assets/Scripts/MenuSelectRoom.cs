@@ -16,4 +16,9 @@ public class MenuSelectRoom : MonoBehaviour
         _text.text = $"Room name: {roomInfo.Name} People: {roomInfo.PlayerCount}/{roomInfo.MaxPlayers}";
         _joinRoom.onClick.AddListener(() => Join(roomInfo.Name));
     }
+
+    private void OnDestroy()
+    {
+        _joinRoom.onClick.RemoveAllListeners();
+    }
 }
