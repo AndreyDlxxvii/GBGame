@@ -2974,6 +2974,7 @@ MonoBehaviour:
   _buttonCreateAndJoinRoom: {fileID: 1213557037}
   _makeRoomPrivate: {fileID: 1478081448}
   _joinByName: {fileID: 836714192}
+  _leaveRoom: {fileID: 1399094908}
   _menuSelectRoom: {fileID: 8072851016794638123, guid: b7f6cf5635afa554f84c13ce4e76d1af, type: 3}
   _content: {fileID: 1745674463}
   _joinByNameInput: {fileID: 689123022}

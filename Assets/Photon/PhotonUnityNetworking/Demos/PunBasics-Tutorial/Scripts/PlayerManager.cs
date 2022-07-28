@@ -44,6 +44,14 @@ namespace Photon.Pun.Demo.PunBasics
         //True, when the user is firing
         bool IsFiring;
 
+        private float _id;
+
+        public float Id
+        {
+            get => photonView.ViewID;
+            set => _id = value;
+        }
+
         #endregion
 
         #region MonoBehaviour CallBacks
@@ -275,12 +283,14 @@ namespace Photon.Pun.Demo.PunBasics
                 // We own this player: send the others our data
                 stream.SendNext(this.IsFiring);
                 stream.SendNext(this.Health);
+                stream.SendNext(Id);
             }
             else
             {
                 // Network player, receive data
                 this.IsFiring = (bool)stream.ReceiveNext();
                 this.Health = (float)stream.ReceiveNext();
+                Id = (float) stream.ReceiveNext();
             }
         }
 
